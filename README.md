@@ -16,7 +16,7 @@ More docs and examples coming soon.
 
 If you are interested in original implementation
 you can go to Alan Falloon's blog to hear more about
-[how he converted the code and the differences that were introduced](http://brierwooddesign.com/2009/1/16/ocaml-quickcheck-translating-quickcheck-from-haskell-type-classes-to-ocaml-modules).
+[how he converted the code and the differences that were introduced](http://brierwoodapps.com/ocaml-quickcheck-translating-quickcheck-from-haskell-type-classes-to-ocaml-modules/).
 
 Btw, with OCaml 3.12 you can somehow simplify original code
 with first-class modules. You can check branch "first-class-modules"
