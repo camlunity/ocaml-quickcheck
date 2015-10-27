@@ -24,8 +24,14 @@ let cl = quickCheck testable_list_to_bool
 let testable_str_to_bool = testable_fun arbitrary_string show_string testable_bool
 let cs = quickCheck testable_str_to_bool
 
-let () =
-  cl prop_revrev;
-  cl prop_mem;
-  cs prop_str_copy
+let void f = fun a -> let _ = f a in ()
 
+let () =
+  (void cl) prop_revrev;
+  (void cl) prop_mem;
+  (void cs) prop_str_copy;
+
+  match cl prop_revrev with
+    | Success -> ()
+    | Failure _ -> failwith "No failure expected"
+    | Exhausted _ -> failwith "No exhaustion expected"

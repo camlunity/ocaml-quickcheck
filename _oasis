@@ -7,6 +7,7 @@ License:     MIT
 LicenseFile: LICENSE
 Plugins:     DevFiles (0.2), META (0.2), StdFiles (0.2)
 BuildTools:      ocamlbuild
+BuildDepends: optcomp
 
 Library quickcheck
   Path:            src
@@ -21,6 +22,7 @@ Executable test
   Install: false
   CompiledObject: best
   MainIs: test.ml
+  BuildDepends: quickcheck
 
 SourceRepository github
   Type:     git

@@ -1,7 +1,10 @@
 _build
 setup.data
 setup.log
+*.native
+*.byte
 src/config.*
 *.ba*
 gen.hs
 QuickCheck-2.4.0.1
+test.native

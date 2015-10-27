@@ -38,7 +38,9 @@ val join_string_list : string list -> string -> string
 
 val sum_int : int list -> int
 
+#if ocaml_version < (4, 01)
 val ( |> ) : 'a -> ('a -> 'b) -> 'b
+#endif
 val ( <| ) : ('a -> 'b) -> 'a -> 'b
 
 val ( % ) : ('a -> 'b) -> ('c -> 'a) -> 'c -> 'b

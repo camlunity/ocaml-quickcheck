@@ -106,6 +106,10 @@ type config = {
   every : Format.formatter -> int * string list -> unit;
 }
 
+type testresult = Success
+                | Failure of int
+                | Exhausted of int
+
 val quick : config
 val verbose : config
 val done_ : string -> int -> string list list -> unit
@@ -114,9 +118,9 @@ val tests : config ->
   int ->
   int ->
   string list list ->
-  unit
+  testresult
 
-val check : 'a testable -> config -> 'a -> unit
-val quickCheck : 'a testable -> 'a -> unit
-val verboseCheck : 'a testable -> 'a -> unit
+val check : 'a testable -> config -> 'a -> testresult
+val quickCheck : 'a testable -> 'a -> testresult
+val verboseCheck : 'a testable -> 'a -> testresult
 

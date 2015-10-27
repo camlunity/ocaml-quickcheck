@@ -189,12 +189,20 @@ let done_ mesg ntest stamps =
     in
     Format.printf "%s %d tests%s" mesg ntest table
 
+type testresult = Success
+                | Failure of int
+                | Exhausted of int
+
 let rec tests config gen ntest nfail stamps =
   let () = Random.self_init () in
   if ntest = config.maxTest
-  then done_ "OK, passed" ntest stamps
+  then
+    let () = done_ "OK, passed" ntest stamps in
+    Success
   else if nfail = config.maxFail
-  then done_ "Arguments exhausted after" nfail stamps
+  then
+    let () = done_ "Arguments exhausted after" nfail stamps in
+    Exhausted nfail
   else begin
     let result = generate (config.size ntest) gen in
     let () =
@@ -207,7 +215,8 @@ let rec tests config gen ntest nfail stamps =
         tests config gen (ntest+1) nfail (result.stamp :: stamps)
       | Some false ->
         Format.printf "@[<2>Falsifiable, after %d tests:\n %s."
-          ntest (join_string_list result.arguments "\n")
+          ntest (join_string_list result.arguments "\n");
+        Failure ntest
   end
 
 let check testable cfg a =
